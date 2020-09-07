@@ -21,5 +21,13 @@ module.exports = {
       if (typeof obj[prop] === 'object') this.objFreeze(obj[prop]);
     });
     return Object.freeze(obj);
-  }
+  },
+  /**
+   * 深拷贝obj
+   * @param {object} obj 
+   */
+  objClone(obj ) {
+    return JSON.parse(JSON.stringify(obj));
+  },
+
 }
