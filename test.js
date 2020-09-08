@@ -2,17 +2,11 @@ let objFunc = require('./obj');
 
 let obj = {
   a: 1,
-  b: {
-    c: 2
+  b: [2,3],
+  c: {
+    d: [4, 5, 6],
+    e: 7
   }
 }
 
-console.log(obj.a)
-
-objFunc.objFreeze(obj, 'a')
-
-obj['a'] = 3
-obj['b'] = 6
-
-console.log(obj.a)
-console.log(obj.b)
+console.log(objFunc.objToQueryString(obj))

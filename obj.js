@@ -26,8 +26,48 @@ module.exports = {
    * 深拷贝obj
    * @param {object} obj 
    */
-  objClone(obj ) {
+  objClone(obj) {
     return JSON.parse(JSON.stringify(obj));
   },
+  /**
+   * 
+   * @param {object} obj 
+   * @param {string} url 
+   */
+  objToQueryString(obj, url = '', encode = false) {
+    let str = ''
+    if(typeof obj == 'object'){
+        for(let i in obj){
+            if(typeof obj[i] != 'function' && typeof obj[i] != 'object'){
+                str += i + '=' + obj[i] + '&' ;
+            }else if (typeof obj[i] == 'object'){
+                nextStr = '';
+                str += subFunc.objToQueryString.handelSon(i, obj[i], encode)
+            }
+        }
+    }
+    let res = str.replace(/&$/g, '')
+    if (!url) return res;
+    if (url && url.includes('?')) return url + res;
+    if (url && !url.includes('?')) return url + '?' + res;
+  }
 
+}
+
+const subFunc = {
+  objToQueryString: {
+    handelSon(objName, objValue, encode = false){
+      if(typeof objValue == 'object'){
+          for(let i in objValue){
+              if(typeof objValue[i] != 'object'){
+                  let value = objName + '[' + i + ']=' + objValue[i];
+                  nextStr += encode ? encodeURI(value) + '&' : value + '&' ;
+              }else{
+                this.handelSon(objName + '[' + i + ']', objValue[i]);
+              }
+          }
+      }
+      return nextStr;
+    }
+  }
 }
