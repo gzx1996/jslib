@@ -8,5 +8,5 @@ module.exports = {
       (a, v) => ((a[v.slice(0, v.indexOf('='))] = v.slice(v.indexOf('=') + 1)), a),
       {}
     )
-  }
+  },
 }

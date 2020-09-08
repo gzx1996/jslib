@@ -87,6 +87,16 @@ module.exports = {
       } else acc[k] = obj[k];
       return acc;
     }, {})
+  },
+  /**
+   * 返回数组每个项对应的频率
+   * @param {array} array 
+   */
+  arrayFrequencies(array) {
+    return array.reduce((a, v) => {
+      a[v] = a[v] ? a[v] + 1 : 1;
+      return a;
+    }, {});
   }
   
 
