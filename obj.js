@@ -52,11 +52,12 @@ module.exports = {
     if (url && !url.includes('?')) return url + '?' + res;
   },
   /**
-   * 判断object是否有这些key
+   * 判断object是否有某个key
    * @param {object} obj 
-   * @param {array[string]} keys 
+   * @param {string} str 
    */
-  hasKey(obj, keys) {
+  hasKey(obj, str) {
+    let keys = str.split('.')
     return (
       keys.length > 0 &&
       keys.every(key => {
