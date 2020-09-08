@@ -30,7 +30,7 @@ module.exports = {
     return JSON.parse(JSON.stringify(obj));
   },
   /**
-   * 
+   * obj转url参数
    * @param {object} obj 
    * @param {string} url 
    */
@@ -50,6 +50,21 @@ module.exports = {
     if (!url) return res;
     if (url && url.includes('?')) return url + res;
     if (url && !url.includes('?')) return url + '?' + res;
+  },
+  /**
+   * 判断object是否有这些key
+   * @param {object} obj 
+   * @param {array[string]} keys 
+   */
+  hasKey(obj, keys) {
+    return (
+      keys.length > 0 &&
+      keys.every(key => {
+        if (typeof obj !== 'object' || !obj.hasOwnProperty(key)) return false;
+        obj = obj[key];
+        return true;
+      })
+    );
   }
 
 }
