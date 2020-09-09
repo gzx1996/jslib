@@ -89,16 +89,6 @@ module.exports = {
     }, {})
   },
   /**
-   * 返回数组每个项对应的频率
-   * @param {array} array 
-   */
-  arrayFrequencies(array) {
-    return array.reduce((a, v) => {
-      a[v] = a[v] ? a[v] + 1 : 1;
-      return a;
-    }, {});
-  },
-  /**
    * 生成含有当前obj部分属性的obj
    * @param {object} obj 
    * @param {array} arr 
