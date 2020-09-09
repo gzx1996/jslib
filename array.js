@@ -7,5 +7,20 @@ module.exports = {
    */
   buildTree(items, keyName = 'id', parentKeyName = 'parent', value = null ) {
     return items.filter(item => item[parent] === value).map(item => ({ ...item, children: this.buildTree(items, keyName,parentKeyName, item[key]) }))
-  }  
+  },
+  /**
+   * 数组全排列
+   * @param {array} arr
+   */
+  arrayPermutations(arr) {
+    if (arr.length <= 2) return arr.length === 2 ? [arr, [arr[1], arr[0]]] : arr;
+    return arr.reduce(
+      (acc, item, i) =>
+        acc.concat(
+          this.arrayPermutations([...arr.slice(0, i), ...arr.slice(i + 1)]).map(val => [item, ...val])
+        ),
+      []
+    );
+  }
+
 }
