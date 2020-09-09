@@ -97,9 +97,15 @@ module.exports = {
       a[v] = a[v] ? a[v] + 1 : 1;
       return a;
     }, {});
+  },
+  /**
+   * 生成含有当前obj部分属性的obj
+   * @param {object} obj 
+   * @param {array} arr 
+   */
+  initSubObj(obj, arr) {
+    return  arr.reduce((acc, curr) => (curr in obj && (acc[curr] = obj[curr]), acc), {});
   }
-  
-
 }
 
 const subFunc = {
