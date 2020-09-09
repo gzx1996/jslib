@@ -1,5 +1,15 @@
 module.exports = {
   /**
+   * 返回数组每个项对应的频率
+   * @param {array} array 
+   */
+  arrayFrequencies(array) {
+    return array.reduce((a, v) => {
+      a[v] = a[v] ? a[v] + 1 : 1;
+      return a;
+    }, {});
+  },
+  /**
    * 将一定格式（带父级）的数组转化为obj树结构的方法
    * @param {array} items 具有一定格式的obj数组
    * @param {string} keyName 主键
