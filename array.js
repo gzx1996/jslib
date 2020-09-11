@@ -16,7 +16,7 @@ module.exports = {
    * @param {string} parentKeyName 储存父级关系的属性
    */
   buildTree(items, keyName = 'id', parentKeyName = 'parent', value = null ) {
-    return items.filter(item => item[parent] === value).map(item => ({ ...item, children: this.buildTree(items, keyName,parentKeyName, item[key]) }))
+    return items.filter(item => item[parentKeyName] === value).map(item => ({ ...item, children: this.buildTree(items, keyName,parentKeyName, item[keyName]) }))
   },
   /**
    * 数组全排列

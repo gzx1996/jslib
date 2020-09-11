@@ -15,4 +15,5 @@ let arr = [
     father: null
   }
 ]
-console.log(JSON.stringify(func.buildTree(arr, 'name', 'father')))
+let res =  func.buildTree(arr, 'name', 'father')
+console.log(JSON.stringify(res))
