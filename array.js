@@ -31,6 +31,18 @@ module.exports = {
         ),
       []
     );
+  },
+  /**
+   * 根据arr中元素的某个属性或者方法，统计个数
+   * @param {array} arr 
+   * @param {prototype} fn 
+   */
+  countBy(arr, fn) {
+    return arr.map(typeof fn === 'function' ? fn : val => val[fn]).reduce((acc, val) => {
+      acc[val] = (acc[val] || 0) + 1;
+      return acc;
+    }, {});
   }
+  
 
 }

@@ -5,9 +5,9 @@ const stringFunc = require('./string')
 const arrayFunc = require('./array')
 
 module.exports = {
-  ...objFunc,
-  ...mathFunc,
-  ...urlFunc,
-  ...stringFunc,
-  ...arrayFunc
+  obj: objFunc,
+  math: mathFunc,
+  url: urlFunc,
+  string: stringFunc,
+  array: arrayFunc
 }
