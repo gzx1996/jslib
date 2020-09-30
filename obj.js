@@ -30,28 +30,6 @@ module.exports = {
     return JSON.parse(JSON.stringify(obj));
   },
   /**
-   * obj转url参数
-   * @param {object} obj 
-   * @param {string} url 
-   */
-  objToQueryString(obj, url = '', encode = false) {
-    let str = ''
-    if(typeof obj == 'object'){
-        for(let i in obj){
-            if(typeof obj[i] != 'function' && typeof obj[i] != 'object'){
-                str += i + '=' + obj[i] + '&' ;
-            }else if (typeof obj[i] == 'object'){
-                nextStr = '';
-                str += subFunc.objToQueryString.handelSon(i, obj[i], encode)
-            }
-        }
-    }
-    let res = str.replace(/&$/g, '')
-    if (!url) return res;
-    if (url && url.includes('?')) return url + res;
-    if (url && !url.includes('?')) return url + '?' + res;
-  },
-  /**
    * 判断object是否有某个key
    * @param {object} obj 
    * @param {string} str 
