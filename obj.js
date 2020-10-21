@@ -49,23 +49,39 @@ module.exports = {
    * obj扁平化
    * @param {object} obj 
    */
-  unflattenObject (obj) {
+  flattenObject (obj, prefix = '') {
     return Object.keys(obj).reduce((acc, k) => {
-      if (k.indexOf('.') !== -1) {
-        const keys = k.split('.');
-        Object.assign(
-          acc,
-          JSON.parse(
-            '{' +
-              keys.map((v, i) => (i !== keys.length - 1 ? `"${v}":{` : `"${v}":`)).join('') +
-              obj[k] +
-              '}'.repeat(keys.length)
-          )
-        );
-      } else acc[k] = obj[k];
+      const pre = prefix.length ? `${prefix}.` : '';
+      if (
+        typeof obj[k] === 'object' &&
+        obj[k] !== null &&
+        Object.keys(obj[k]).length > 0
+      )
+        Object.assign(acc, this.flattenObject(obj[k], pre + k));
+      else acc[pre + k] = obj[k];
       return acc;
     }, {})
   },
+  /**
+   * 扁平obj立体化
+   * @param {*} obj 
+   * @param {*} arr 
+   */
+  unflattenObject (obj) {
+    return  Object.keys(obj).reduce((res, k) => {
+      k.split('.').reduce(
+        (acc, e, i, keys) =>
+          acc[e] ||
+          (acc[e] = isNaN(Number(keys[i + 1]))
+            ? keys.length - 1 === i
+              ? obj[k]
+              : {}
+            : []),
+        res
+      );
+      return res;
+    }, {})
+  }
   /**
    * 生成含有当前obj部分属性的obj
    * @param {object} obj 
