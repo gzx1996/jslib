@@ -81,7 +81,7 @@ module.exports = {
       );
       return res;
     }, {})
-  }
+  },
   /**
    * 生成含有当前obj部分属性的obj
    * @param {object} obj 
