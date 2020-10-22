@@ -89,6 +89,29 @@ module.exports = {
    */
   initSubObj(obj, arr) {
     return  arr.reduce((acc, curr) => (curr in obj && (acc[curr] = obj[curr]), acc), {});
+  },
+  /**
+   * 比较两个obj区别, 并返回是否相等
+   */
+  objCompare(o1, o2) {
+    const diff = {};
+    o1 = this.flattenObject(o1);
+    o2 = this.flattenObject(o2);
+    let keys = Object.keys(o1).concat(Object.keys(o2))
+    keys.forEach(key => {
+      if ((o1[key] !== undefined && o1[key] !== null) && (o2[key] === undefined || o2[key] === null)) {
+        diff[key] = [o1[key], null];
+      }
+      if ((o2[key] !== undefined && o2[key] !== null) && (o1[key] === undefined || o1[key] === null)) {
+        diff[key] = [null, o2[key]]
+      }
+      if ((o1[key] !== undefined && o1[key] !== null) && (o2[key] !== undefined && o2[key] !== null)) {
+        if (o1[key] !== o2[key]) {
+          diff[key] = [o1[key], o2[key]]
+        }
+      }
+    })
+    return { diff, isEqual: Object.keys(diff).length === 0 ? true : false }
   }
 }
 
