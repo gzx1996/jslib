@@ -98,6 +98,7 @@ module.exports = {
     o1 = this.flattenObject(o1);
     o2 = this.flattenObject(o2);
     let keys = Object.keys(o1).concat(Object.keys(o2))
+    keys = Array.from(new Set(keys))
     keys.forEach(key => {
       if ((o1[key] !== undefined && o1[key] !== null) && (o2[key] === undefined || o2[key] === null)) {
         diff[key] = [o1[key], null];
