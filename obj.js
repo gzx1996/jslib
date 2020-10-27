@@ -115,21 +115,3 @@ module.exports = {
     return { diff, isEqual: Object.keys(diff).length === 0 ? true : false }
   }
 }
-
-const subFunc = {
-  objToQueryString: {
-    handelSon(objName, objValue, encode = false){
-      if(typeof objValue == 'object'){
-          for(let i in objValue){
-              if(typeof objValue[i] != 'object'){
-                  let value = objName + '[' + i + ']=' + objValue[i];
-                  nextStr += encode ? encodeURI(value) + '&' : value + '&' ;
-              }else{
-                this.handelSon(objName + '[' + i + ']', objValue[i]);
-              }
-          }
-      }
-      return nextStr;
-    }
-  }
-}
