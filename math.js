@@ -5,7 +5,7 @@ module.exports = {
    * @param {number} max 
    * @param {number} expected 
    */
-  getRandomWithExpection(min, max, expected) {
+  getRandomWithMean(min, max, expected) {
     const random = function (min, max) {
       return Math.floor(Math.random() * (max - min + 1) + min)
     }
