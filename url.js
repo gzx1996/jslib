@@ -36,7 +36,7 @@ module.exports = {
    * @param {string} url 需要校验的url
    */
   isAbsoluteURL(url) {
-    return /^[a-z][a-z0-9+.-]*:/.test(str);
+    return /^[a-z][a-z0-9+.-]*:/.test(url);
   }
 }
 
