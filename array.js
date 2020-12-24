@@ -42,7 +42,15 @@ module.exports = {
       acc[val] = (acc[val] || 0) + 1;
       return acc;
     }, {});
-  }
-  
+  },
+
+  /**
+   * 数组交集
+   * @param {array} nums1 
+   * @param {array} nums2 
+   */
+  intersection (nums1, nums2) {
+    return nums1.filter((v, i) => nums2.includes(v) && nums1.lastIndexOf(v) === i)
+}
 
 }
